@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <main>
-      <Header title={i18n.HOME_TITLE(patient?.name[0].given)} subtitle={i18n.HOME_SUBTITLE} />
+      <Header title={i18n.HOME_TITLE(patient?.name[0].given[0])} subtitle={i18n.HOME_SUBTITLE} />
       <Button onClick={() => router.push('/survey')} text={i18n.START} />
     </main>
   );
