@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import Header from "@/common/uikit/header";
+import {Header} from "@/common/uikit/text";
 import Button from "@/common/uikit/button";
 import i18n from '@/common/utils/i18n';
 

@@ -8,6 +8,7 @@ enum ContactType {
 }
 
 interface UserName {
+    preferred: string,
     text: string,
     family: string,
     given: string[],  
