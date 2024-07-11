@@ -1,16 +1,16 @@
 import { ResourceBase, ResourceType } from "./resource";
-import { Doctor, Patient } from "./user";
+import { IDoctor, IPatient } from "./user";
 
 enum AppointmentStatus {
     FINISHED = 'finished',
 }
 
-export interface Appointment extends ResourceBase {
+export interface IAppointment extends ResourceBase {
     resourceType: ResourceType.APPOINTMENT,
     status: AppointmentStatus,
-    type: string[],
-    subject: Patient,
-    actor: Doctor,
+    type: any[],
+    subject: IPatient,
+    actor: IDoctor,
     period: {
         start: string,
         end: string,

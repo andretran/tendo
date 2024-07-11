@@ -5,14 +5,14 @@ enum PromptType {
     SUMMARY  = 'summary',
 }
 
-export interface Prompt {
+export interface IPrompt {
     id: string,
+    header: string,
     text: string,
     type: PromptType,
 }
 
-export interface Survey {
-    header: string,
+export interface ISurvey {
     prompts: any[],
 }
 

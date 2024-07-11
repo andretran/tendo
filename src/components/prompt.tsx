@@ -1,20 +1,28 @@
 'use client';
 
-import { Prompt as PromptType } from "@/types/survey";
-import { Text } from "@/common/uikit/text";
+import { IPrompt } from "@/common/models/survey";
+import { Text, Header } from "@/common/uikit/text";
 import { useInterpolator } from "@/hooks/useInterpolator";
+import styled from 'styled-components';
+
+const StyledPrompt = styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`
 
 interface PromptProps {
-    prompt: PromptType;
+    prompt: IPrompt;
 }
 
 const Prompt = ({prompt}: PromptProps) => {
     const interpolatedPrompt = useInterpolator(prompt);
 
     return (
-        <section>
+        <StyledPrompt>
+            <Header title={interpolatedPrompt.header}/>
             <Text value={interpolatedPrompt.text} />
-        </section>
+        </StyledPrompt>
     );
 }
 

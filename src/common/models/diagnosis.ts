@@ -1,24 +1,24 @@
-import { Appointment } from "./appointment";
+import { IAppointment } from "./appointment";
 import { ResourceBase, ResourceType } from "./resource";
 
 enum DiagnosisStatus {
     FINAL = 'final',
 }
 
-interface DiagnosisCode {
+interface IDiagnosisCode {
     system: string,
     code: string,
     name: string,
 }
 
-export interface Diagnosis extends ResourceBase {
+export interface IDiagnosis extends ResourceBase {
     resourceType: ResourceType.DIAGNOSIS,
     meta: {
         lastUpdated: string,
     },
     status: DiagnosisStatus,
     code: {
-        coding: DiagnosisCode[],
+        coding: IDiagnosisCode[],
     }
-    appointment: Appointment,
+    appointment: IAppointment,
 }

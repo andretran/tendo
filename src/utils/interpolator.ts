@@ -1,5 +1,5 @@
 import { SessionState } from "@/stores/sessionStore";
-import { Prompt } from "@/types/survey"
+import { IPrompt } from "@/common/models/survey";
 
 const INTERPOLATION_PATTERN = /\[([^\]]+)\]/g;
 
@@ -34,6 +34,6 @@ const extractAndReplace = (text: string, session: SessionState): string => {
     return interpolatedText;
 }
 
-export const interpolate = (prompt: Prompt, session: SessionState): Prompt => {
+export const interpolate = (prompt: IPrompt, session: SessionState): IPrompt => {
     return {...prompt, text: extractAndReplace(prompt.text, session)};
 }

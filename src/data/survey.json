@@ -1,9 +1,9 @@
 {
-    "header": "Take your survey!",
     "prompts": [
         {
             "id": "4e53a1b8-59b3-4c3b-b3fb-b380ea6e2103",
-            "text": "Hi [patient.resourceType], on a scale of 1-10, would you recommend Dr [doctor.resourceType] to a friend or family member? 1 = Would not recommend, 10 = Would strongly recommend",
+            "header": "Take a moment to complete a brief survey about your experience.",
+            "text": "Hi [patient.name.preferred], on a scale of 1-10, would you recommend Dr [doctor.name.family] to a friend or family member? 1 = Would not recommend, 10 = Would strongly recommend",
             "type": "rating"
         },
         {

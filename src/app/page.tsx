@@ -1,23 +1,37 @@
 'use client';
 
-import { useRouter } from "next/navigation";
-
-import {Header} from "@/common/uikit/text";
-import Button from "@/common/uikit/button";
+import {useState, useCallback} from 'react';
+import { useSurvey } from '@/hooks/useSurvey';
+import Prompt from '@/components/prompt';
+import Button, { ButtonStyle } from '@/common/uikit/button';
 import i18n from '@/common/utils/i18n';
+import styled from 'styled-components';
 
-import { useSession } from "@/hooks/useSession";
-import { SessionState } from "@/stores/sessionStore";
+const SurveyContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    gap: 30px;
+    position: relative;
+`;
 
+const SurveyPage = () => {
+    const [currentPage, setPage] = useState <number>(0);
+    const [survey] = useSurvey();
 
-export default function Home() {
-  const router = useRouter();
-  const {patient}: SessionState = useSession();
+    const navigateBack = useCallback(() => setPage(currentPage -1), [currentPage]);
+    const navigateFoward = useCallback(() => setPage(currentPage + 1), [currentPage]);
 
-  return (
-    <main>
-      <Header title={i18n.HOME_TITLE(patient?.name[0].given[0])} subtitle={i18n.HOME_SUBTITLE} />
-      <Button onClick={() => router.push('/survey')} text={i18n.START} />
-    </main>
-  );
+    return (
+        <SurveyContainer>
+            <Prompt prompt={survey.prompts[currentPage]}/>
+            <div>
+                { currentPage > 0 ? <Button style={ButtonStyle.PRIMARY} onClick={() => navigateBack()} text={i18n.BACK}/> : null } 
+                { currentPage < survey.prompts.length - 1 ? <Button style={ButtonStyle.PRIMARY} onClick={() => navigateFoward()} text={i18n.CONTINUE}/> : null }
+            </div>
+        </SurveyContainer>
+    );
 }
+
+export default SurveyPage;

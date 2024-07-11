@@ -1,6 +1,4 @@
-export enum FontSize {
-    SMALL = 'SMALL',
-}
+import styled from 'styled-components';
 
 interface HeaderProps {
     title: string,
@@ -8,20 +6,34 @@ interface HeaderProps {
 }
 
 interface TextProps {
-    size?: FontSize,
+    size?: number,
     value: string,
 }
 
-export const Text = ({size = FontSize.SMALL, value}: TextProps) => {
-    return <p>{value}</p>;
+const StyledHeader = styled.header`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    & h1 {
+        font-size: 24px;
+    }
+`;
+
+const StyledText = styled.p <{ $size: number }>`
+    font-size: ${props => `${props.$size}px`}
+`
+
+export const Text = ({size = 14, value}: TextProps) => {
+    return <StyledText $size={size}>{value}</StyledText>;
 }
 
-export const Header = ({title, subtitle}: HeaderProps) => {
+export const Header = ({title}: HeaderProps) => {
     return (
-        <>
-        <h1>{title}</h1>
-        {subtitle ? <h2>{subtitle}</h2> : null}
-        </>
+        <StyledHeader>
+            <h1>{title}</h1>
+        </StyledHeader>
     );
 }
 

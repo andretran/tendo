@@ -1,7 +1,7 @@
-import { Patient, Doctor } from "@/types/user";
-import { Bundle, ResourceEntry, ResourceType} from "@/types/resource";
-import { Appointment } from "@/types/appointment";
-import { Diagnosis } from "@/types/diagnosis";
+import { IPatient, IDoctor, Patient, Doctor } from "@/common/models/user";
+import { Bundle, IResourceEntry, ResourceType} from "@/common/models/resource";
+import { IAppointment } from "@/common/models/appointment";
+import { IDiagnosis } from "@/common/models/diagnosis";
 
 import PatientData from '@/data/patient.json';
 
@@ -28,18 +28,18 @@ import PatientData from '@/data/patient.json';
  */
 
 export interface SessionState {
-    patient?: Patient,
-    doctor?: Doctor;
-    appointments: Appointment[];
-    diagnosis: Diagnosis[];
+    patient?: IPatient,
+    doctor?: IDoctor;
+    appointments: IAppointment[];
+    diagnosis: IDiagnosis[];
 }
 
 class SessionStore {
     private static instance: SessionStore;
-    patient?: Patient;
-    doctor?: Doctor;
-    appointments: Appointment[];
-    diagnosis: Diagnosis[];
+    patient?: IPatient;
+    doctor?: IDoctor;
+    appointments: IAppointment[];
+    diagnosis: IDiagnosis[];
 
     getState = (): SessionState => {
         return {
@@ -71,19 +71,19 @@ class SessionStore {
         this.diagnosis = [];
     }
 
-    private initResourceObject = ({resource}: ResourceEntry): void => {
+    private initResourceObject = ({resource}: IResourceEntry): void => {
         switch (resource.resourceType) {
             case ResourceType.PATIENT:
-                this.patient = resource as Patient;
+                this.patient = Patient.toObject(resource);
                 break;
             case ResourceType.DOCTOR:
-                this.doctor = resource as Doctor;
+                this.doctor = Doctor.toObject(resource);
                 break;
             case ResourceType.APPOINTMENT:
-                this.appointments.push(resource as Appointment);
+                this.appointments.push(resource as IAppointment);
                 break;
             case ResourceType.DIAGNOSIS:
-                this.diagnosis.push(resource as Diagnosis);
+                this.diagnosis.push(resource as IDiagnosis);
                 break;
         }
     }

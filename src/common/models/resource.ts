@@ -1,6 +1,6 @@
-import { Appointment } from "./appointment"
-import { Diagnosis } from "./diagnosis"
-import { User } from "./user"
+import { IAppointment } from "./appointment"
+import { IDiagnosis } from "./diagnosis"
+import { IUser } from "./user"
 
 export enum ResourceType {
     BUNDLE = 'Bundle',
@@ -10,7 +10,7 @@ export enum ResourceType {
     DIAGNOSIS = 'Diagnosis',
 }
 
-export interface ResourceEntry {
+export interface IResourceEntry {
     resource: Resource;
 }
 
@@ -22,7 +22,7 @@ export interface ResourceBase {
 export interface Bundle extends ResourceBase {
     resourceType: ResourceType.BUNDLE,
     timestamp: string,
-    entry: ResourceEntry[],
+    entry: IResourceEntry[],
 }
 
-export type Resource = User | Appointment | Diagnosis;
+export type Resource = IUser | IAppointment | IDiagnosis;
