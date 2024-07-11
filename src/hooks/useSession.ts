@@ -12,7 +12,7 @@ const DEFAULT_SESSION_STATE: SessionState = {
     diagnosis: [],
 }
 
-interface SessionState {
+export interface SessionState {
     patient?: IPatient,
     doctor?: IDoctor;
     appointments: IAppointment[];

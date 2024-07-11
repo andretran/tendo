@@ -1,3 +1,4 @@
+import { SessionState } from "@/hooks/useSession";
 import { IPrompt } from "@/common/models/survey";
 
 const INTERPOLATION_PATTERN = /\[([^\]]+)\]/g;
