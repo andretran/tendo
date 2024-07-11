@@ -20,5 +20,19 @@ export interface IDiagnosis extends ResourceBase {
     code: {
         coding: IDiagnosisCode[],
     }
-    appointment: IAppointment,
+    appointment: string,
+}
+
+export class Diagnosis {
+    static toObject = (resource: {[key: string]: any}): IDiagnosis => {
+        return {
+            id: resource.id,
+            resourceType: ResourceType.DIAGNOSIS,
+            status: resource.status,
+            code: {
+                coding: resource.code.coding.map((c: any) => c as IDiagnosisCode)
+            },
+            appointment: resource.appointment.reference,
+        } as IDiagnosis;
+    }
 }
