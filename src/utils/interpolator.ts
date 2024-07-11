@@ -1,4 +1,3 @@
-import { SessionState } from "@/stores/sessionStore";
 import { IPrompt } from "@/common/models/survey";
 
 const INTERPOLATION_PATTERN = /\[([^\]]+)\]/g;
