@@ -1,7 +1,7 @@
 {
     "prompts": [
         {
-            "id": "5e87fefe-4db0-4c2f-91f4-b9a26bd1a457 ",
+            "id": "5e87fefe-4db0-4c2f-91f4-b9a26bd1a457",
             "name": "proper_diagnosis",
             "label": "Proper Diagnosis",
             "header": "Hi [patient.name.preferred]!",

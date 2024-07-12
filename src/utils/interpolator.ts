@@ -7,7 +7,7 @@ const getProperty = (property: string, data: {[key: string]: any}): string => {
     const properties = property.split('.');
 
     if (properties.length === 1) {
-        return data[property];
+        return data != null ? data[property] : '';
     } else {
         const key = properties[0];
         return getProperty(properties.slice(1).join('.'), data[key]);
