@@ -8,15 +8,15 @@ import PatientData from '@/data/patient.json';
 const DEFAULT_SESSION_STATE: SessionState = {
     patient: undefined,
     doctor: undefined,
-    appointments: [],
-    diagnosis: [],
+    appointments: undefined,
+    diagnosis: undefined,
 }
 
 export interface SessionState {
     patient?: IPatient,
     doctor?: IDoctor;
-    appointments: IAppointment[];
-    diagnosis: IDiagnosis[];
+    appointments?: IAppointment;
+    diagnosis?: IDiagnosis;
 }
 
 const initSessionState = (): SessionState => {
@@ -32,10 +32,10 @@ const initSessionState = (): SessionState => {
                 state.doctor = Doctor.toObject(resource);
                 break;
             case ResourceType.APPOINTMENT:
-                state.appointments.push(Appointment.toObject(resource));
+                state.appointments = Appointment.toObject(resource);
                 break;
             case ResourceType.DIAGNOSIS:
-                state.diagnosis.push(Diagnosis.toObject(resource));
+                state.diagnosis = Diagnosis.toObject(resource);
                 break;
         }
     });

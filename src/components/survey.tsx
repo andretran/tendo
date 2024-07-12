@@ -17,7 +17,7 @@ const ChildContainer = styled.section`
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    width auto;
+    width: auto;
     padding: 50px 50px 20px;
 `
 

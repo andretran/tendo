@@ -28,12 +28,11 @@ const StyledButton = styled.button<{ $style: ButtonStyle }>`
                 `;
             default:
                 return `
-                    background-color: #d3d4d5;
+                    background-color: #ffffff;
+                    border: solid 1px #a9adb2;
                     color: #0c1015;
 
                     &:disabled {
-                        background-color: #ffffff;
-                        border: solid 1px #d3d4d5;
                         cursor: default;
                     }
                 `;

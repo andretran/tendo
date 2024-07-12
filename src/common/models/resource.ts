@@ -15,7 +15,7 @@ export interface IResourceEntry {
 }
 
 export interface ResourceBase {
-    id: string
+    id: string,
     resourceType: ResourceType,
 }
 

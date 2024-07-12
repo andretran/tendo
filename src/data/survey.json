@@ -1,25 +1,21 @@
 {
     "prompts": [
         {
-            "id": "4e53a1b8-59b3-4c3b-b3fb-b380ea6e2103",
-            "header": "Take a moment to complete a brief survey about your experience.",
-            "text": "Hi [patient.name.preferred], on a scale of 1-10, would you recommend Dr [doctor.name.family] to a friend or family member? 1 = Would not recommend, 10 = Would strongly recommend",
-            "type": "rating"
-        },
-        {
             "id": "5e87fefe-4db0-4c2f-91f4-b9a26bd1a457 ",
-            "text": "Thank you. You were diagnosed with [diagnosis.code.coding.name]. Did Dr [doctor.name.family] explain how to manage this diagnosis in a way you could understand?",
-            "type": "choice"
+            "name": "proper_diagnosis",
+            "label": "Proper Diagnosis",
+            "header": "Hi [patient.name.preferred]!",
+            "text": "You were diagnosed with [diagnosis.name]. Did Dr. [doctor.name.family] explain how to manage this diagnosis in a way you could understand?",
+            "type": "choice",
+            "options": ["No", "Yes"]
         },
         {
             "id": "6e040931-b46b-475c-bd66-6395d105d3b0",
-            "text": "We appreciate the feedback. One last question: How do you feel about being diagnosed with [diagnosis.code.coding.name]?",
+            "name": "feedback",
+            "label": "feedback",
+            "header": "We appreciate the feedback.",
+            "text": "One last question: How do you feel about being diagnosed with [diagnosis.name]?",
             "type": "text"
-        },
-        {
-            "id": "16dcd473-d494-4fba-9af1-34f82ebf632f",
-            "text": "Thanks again! Here’s what we heard:",
-            "type": "summary"
         }
     ]
 }

@@ -12,6 +12,7 @@ interface IDiagnosisCode {
 }
 
 export interface IDiagnosis extends ResourceBase {
+    name: string,
     resourceType: ResourceType.DIAGNOSIS,
     meta: {
         lastUpdated: string,
@@ -25,6 +26,8 @@ export interface IDiagnosis extends ResourceBase {
 
 export class Diagnosis {
     static toObject = (resource: {[key: string]: any}): IDiagnosis => {
+        const diagnosisName = resource.code.coding[0].name;
+
         return {
             id: resource.id,
             resourceType: ResourceType.DIAGNOSIS,
@@ -33,6 +36,7 @@ export class Diagnosis {
                 coding: resource.code.coding.map((c: any) => c as IDiagnosisCode)
             },
             appointment: resource.appointment.reference,
+            name: diagnosisName,
         } as IDiagnosis;
     }
 }

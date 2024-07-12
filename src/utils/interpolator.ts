@@ -35,5 +35,5 @@ const extractAndReplace = (text: string, session: SessionState): string => {
 }
 
 export const interpolate = (prompt: IPrompt, session: SessionState): IPrompt => {
-    return {...prompt, text: extractAndReplace(prompt.text, session)};
+    return {...prompt, text: extractAndReplace(prompt.text, session), header: extractAndReplace(prompt.header, session)};
 }

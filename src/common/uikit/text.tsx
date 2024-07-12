@@ -22,7 +22,8 @@ const StyledHeader = styled.header`
 `;
 
 const StyledText = styled.p <{ $size: number }>`
-    font-size: ${props => `${props.$size}px`}
+    font-size: ${props => `${props.$size}px`};
+    line-height: 1.5em;
 `
 
 export const Text = ({size = 14, value}: TextProps) => {

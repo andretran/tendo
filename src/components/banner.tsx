@@ -4,12 +4,12 @@ import SurveyBanner from '@/assets/surveyBanner.jpg';
 
 const StyledBannerContainer = styled.aside`
     height: 100%;
-    width: 1300px;
+    width: 50%;
     position: relative;
 `;
 
 const Banner = () =>  
     <StyledBannerContainer>
-        <Image src={SurveyBanner} alt="" layout="fill"/>
+        <Image src={SurveyBanner} alt="" layout="fill" objectFit="cover"/>
     </StyledBannerContainer>
 export default Banner;

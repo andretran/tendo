@@ -1,6 +1,6 @@
 'use client';
 
-import {useState, useCallback} from 'react';
+import {useState, useCallback, useMemo} from 'react';
 import { useSurvey } from '@/hooks/useSurvey';
 import Prompt from '@/components/prompt';
 import Button, { ButtonStyle } from '@/common/uikit/button';
@@ -16,20 +16,44 @@ const SurveyContainer = styled.div`
     position: relative;
 `;
 
+const ButtonContainer = styled.div`
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    justify-content: right;
+`
+
+const FormContainer = styled.form`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 0 40px;
+`
+
 const SurveyPage = () => {
     const [currentPage, setPage] = useState <number>(0);
-    const [survey] = useSurvey();
+    const [survey, form, setForm] = useSurvey();
 
     const navigateBack = useCallback(() => setPage(currentPage -1), [currentPage]);
     const navigateFoward = useCallback(() => setPage(currentPage + 1), [currentPage]);
 
+    const promptValue = useMemo(() => {
+        const name = survey.prompts[currentPage].name;
+
+        return form[name];
+    }, [survey, form, currentPage]);
+
+    const continueText = currentPage === survey.prompts.length - 1 ? i18n.DONE : i18n.CONTINUE;
+
     return (
         <SurveyContainer>
-            <Prompt prompt={survey.prompts[currentPage]}/>
-            <div>
-                { currentPage > 0 ? <Button style={ButtonStyle.PRIMARY} onClick={() => navigateBack()} text={i18n.BACK}/> : null } 
-                { currentPage < survey.prompts.length - 1 ? <Button style={ButtonStyle.PRIMARY} onClick={() => navigateFoward()} text={i18n.CONTINUE}/> : null }
-            </div>
+            <FormContainer>
+                <Prompt prompt={survey.prompts[currentPage]} onChange={setForm} value={promptValue}/>
+                <ButtonContainer>
+                    { currentPage > 0 ? <Button style={ButtonStyle.DEFAULT} onClick={() => navigateBack()} text={i18n.BACK}/> : null } 
+                    <Button disabled={!promptValue} style={ButtonStyle.PRIMARY} onClick={() => navigateFoward()} text={continueText}/>
+                </ButtonContainer>
+            </FormContainer>
         </SurveyContainer>
     );
 }
