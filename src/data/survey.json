@@ -14,7 +14,7 @@
             "name": "feedback",
             "label": "feedback",
             "header": "We appreciate the feedback.",
-            "text": "One last question: How do you feel about being diagnosed with [diagnosis.name]?",
+            "text": "How do you feel about being diagnosed with [diagnosis.name]?",
             "type": "text"
         }
     ]

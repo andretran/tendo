@@ -1,14 +1,17 @@
 'use client';
 
 import Logo from "@/common/uikit/logo";
+import { Text } from "@/common/uikit/text";
 import Banner from "@/components/banner";
 import styled from 'styled-components';
+import i18n from '@/common/utils/i18n';
 
 const LayoutContainer = styled.main`
     display: flex;
     height: 100%;
     width: 100%;
     position: relative;
+    justify-content: space-between;
 `
 
 const ChildContainer = styled.section`
@@ -18,6 +21,7 @@ const ChildContainer = styled.section`
     flex-direction: column;
     height: 100%;
     width: auto;
+    min-width: 700px;
     padding: 50px 50px 20px;
 `
 
@@ -40,7 +44,7 @@ const SurveyLayout = ({
                 <ChildContainer>
                     {children}
                     <LogoContainer>
-                        <div>Powered By</div>
+                        <Text value={i18n.POWERED_BY} size={10}/>
                     <Logo />
                 </LogoContainer>
                 </ChildContainer>

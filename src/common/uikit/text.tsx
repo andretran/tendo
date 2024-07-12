@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 interface HeaderProps {
     title: string,
-    subtitle?: string,
 }
 
 interface TextProps {
     size?: number,
     value: string,
+    weight?: number,
 }
 
 const StyledHeader = styled.header`
@@ -21,13 +21,14 @@ const StyledHeader = styled.header`
     }
 `;
 
-const StyledText = styled.p <{ $size: number }>`
+const StyledText = styled.p <{ $size: number, $weight: number }>`
     font-size: ${props => `${props.$size}px`};
+    font-weight: ${props => props.$weight};
     line-height: 1.5em;
 `
 
-export const Text = ({size = 14, value}: TextProps) => {
-    return <StyledText $size={size}>{value}</StyledText>;
+export const Text = ({size = 14, weight = 400, value}: TextProps) => {
+    return <StyledText $size={size} $weight={weight}>{value}</StyledText>;
 }
 
 export const Header = ({title}: HeaderProps) => {

@@ -6,6 +6,7 @@ import { useInterpolator } from "@/hooks/useInterpolator";
 import styled from 'styled-components';
 import TextArea from "@/common/uikit/textarea";
 import Choice from "./choice";
+import { useCallback } from "react";
 
 
 const StyledPrompt = styled.section`
@@ -18,7 +19,7 @@ const StyledPrompt = styled.section`
 interface PromptProps {
     prompt: IPrompt;
     value: any;
-    onChange: (key: string, value: any) => void;
+    onChange: (key: string, question: string, value: any) => void;
 }
 
 const renderField = (
@@ -39,11 +40,14 @@ const renderField = (
 const Prompt = ({prompt, value, onChange}: PromptProps) => {
     const interpolatedPrompt = useInterpolator(prompt);
 
+    const onChangeWrapper = useCallback((key: string, value: string) =>
+        onChange(key, interpolatedPrompt.text, value), [onChange, interpolatedPrompt]);
+
     return (
         <StyledPrompt>
             <Header title={interpolatedPrompt.header}/>
             <Text value={interpolatedPrompt.text} />
-            {renderField(prompt, value, onChange)}
+            {renderField(prompt, value, onChangeWrapper)}
         </StyledPrompt>
     );
 }

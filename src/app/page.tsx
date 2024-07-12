@@ -6,6 +6,8 @@ import Prompt from '@/components/prompt';
 import Button, { ButtonStyle } from '@/common/uikit/button';
 import i18n from '@/common/utils/i18n';
 import styled from 'styled-components';
+import {useRouter} from 'next/navigation';
+import { useStorage } from '@/hooks/useSurvey';
 
 const SurveyContainer = styled.div`
     display: flex;
@@ -31,16 +33,25 @@ const FormContainer = styled.form`
 `
 
 const SurveyPage = () => {
+    const router = useRouter();
     const [currentPage, setPage] = useState <number>(0);
     const [survey, form, setForm] = useSurvey();
+    const [_, setStorage] = useStorage();
 
     const navigateBack = useCallback(() => setPage(currentPage -1), [currentPage]);
-    const navigateFoward = useCallback(() => setPage(currentPage + 1), [currentPage]);
+    const navigateFoward = useCallback(() => {
+        if (currentPage == survey.prompts.length - 1) {
+            setStorage(form);
+            router.push('/summary');
+        } else {
+            setPage(currentPage + 1);
+        }
+    }, [currentPage, router, survey, form, setStorage]);
 
     const promptValue = useMemo(() => {
         const name = survey.prompts[currentPage].name;
 
-        return form[name];
+        return form[name]?.value;
     }, [survey, form, currentPage]);
 
     const continueText = currentPage === survey.prompts.length - 1 ? i18n.DONE : i18n.CONTINUE;
