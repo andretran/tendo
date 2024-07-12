@@ -21,7 +21,7 @@ const ChildContainer = styled.section`
     flex-direction: column;
     height: 100%;
     width: auto;
-    min-width: 700px;
+    max-width: 700px;
     padding: 50px 50px 20px;
 `
 

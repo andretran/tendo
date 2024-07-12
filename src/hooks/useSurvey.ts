@@ -27,8 +27,13 @@ const intializeFormState = (prompts: IPrompt[]): PromptForm => {
     return state;
 };
 
-const intializeFormData = (): PromptForm => {
-    return JSON.parse(localStorage.getItem(FORM_DATA_KEY) || '{}') as PromptForm;
+const intializeStorageData = (): PromptForm => {
+    if (typeof window != 'undefined') {
+        return JSON.parse(localStorage.getItem(FORM_DATA_KEY) || '{}') as PromptForm;
+    } else {
+        return {};
+    }
+    
 }
 
 export const useSurvey = (): [ISurvey, PromptForm, (name: string, question: string, value: any) => void] => {
@@ -46,7 +51,7 @@ export const useSurvey = (): [ISurvey, PromptForm, (name: string, question: stri
 };
 
 export const useStorage = (): [PromptForm, (form:PromptForm) => void] => {
-    const [storage, setStorage] = useState<PromptForm>(intializeFormData);
+    const [storage, setStorage] = useState<PromptForm>(intializeStorageData);
     const setStorageWrapper = useCallback((form: { [key: string]: any}) => {
         const newStorage = {...form};
         setStorage(newStorage);

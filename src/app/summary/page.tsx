@@ -34,8 +34,6 @@ const SummaryPrompt = ({question, value}: SummaryPromptProps) => {
     );
 }
 
-
-
 const SummaryPage = () => {
     const [storage] = useStorage();
 
