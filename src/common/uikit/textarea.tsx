@@ -27,7 +27,7 @@ interface TextAreaProps {
     label: string;
     name: string;
     value: string;
-    onChange?: (name: string, question: string, value: any) => void;
+    onChange?: (name: string, value: any) => void;
 }
 
 const TextArea = ({htmlFor, label, name, value, onChange}: TextAreaProps) => {
